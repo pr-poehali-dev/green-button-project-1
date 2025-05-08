@@ -13,17 +13,18 @@ const GreenButton = React.forwardRef<HTMLButtonElement, GreenButtonProps>(
     { children, className, variant = "default", size = "md", ...props },
     ref,
   ) => {
-    // Use red color for large buttons, green for others
-    const buttonColor = size === "lg" ? "red" : "green";
-
     return (
       <button
         ref={ref}
         className={cn(
           "rounded-md font-medium transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-offset-2",
           variant === "default"
-            ? `bg-${buttonColor}-500 text-white hover:bg-${buttonColor}-600 active:bg-${buttonColor}-700 focus:ring-${buttonColor}-500`
-            : `border-2 border-${buttonColor}-500 text-${buttonColor}-500 hover:bg-${buttonColor}-50 active:bg-${buttonColor}-100 focus:ring-${buttonColor}-500`,
+            ? size === "lg"
+              ? "bg-red-500 text-white hover:bg-red-600 active:bg-red-700 focus:ring-red-500"
+              : "bg-green-500 text-white hover:bg-green-600 active:bg-green-700 focus:ring-green-500"
+            : size === "lg"
+              ? "border-2 border-red-500 text-red-500 hover:bg-red-50 active:bg-red-100 focus:ring-red-500"
+              : "border-2 border-green-500 text-green-500 hover:bg-green-50 active:bg-green-100 focus:ring-green-500",
           size === "sm"
             ? "text-sm px-3 py-1.5"
             : size === "md"
